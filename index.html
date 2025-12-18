@@ -11,7 +11,7 @@
     <style>
         :root {
             --bg-color: #060912;
-            --card-bg: rgba(22, 27, 34, 0.6);
+            --card-bg: rgba(22, 27, 34, 0.7);
             --accent-color: #2188ff;
             --text-main: #ffffff;
             --text-sec: #8b949e;
@@ -26,6 +26,42 @@
             overflow-x: hidden;
         }
 
+        /* ОКНО ВВОДА НИКА */
+        #nick-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .nick-box {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: var(--border);
+            max-width: 350px;
+            width: 90%;
+        }
+
+        .nick-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #0d1117;
+            border: var(--border);
+            color: white;
+            border-radius: 8px;
+            outline: none;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* Навигация */
         nav {
             display: flex;
             justify-content: space-between;
@@ -34,273 +70,216 @@
             background: rgba(13, 17, 23, 0.9);
             backdrop-filter: blur(10px);
             border-bottom: var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
         }
 
-        .logo { font-weight: 800; font-size: 20px; color: var(--accent-color); text-transform: uppercase; }
-        .nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+        .logo { font-weight: 800; font-size: 20px; color: var(--accent-color); }
+        .nav-buttons { display: flex; gap: 10px; }
         
         .nav-link {
             background: rgba(255,255,255,0.05);
             border: var(--border);
             color: white;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
             transition: 0.3s;
         }
 
-        .nav-link:hover, .nav-link.active {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(33, 136, 255, 0.4);
-        }
+        .nav-link.active { background: var(--accent-color); border-color: var(--accent-color); }
 
+        /* Контент */
         .page { display: none; padding: 40px 5%; animation: fadeIn 0.4s ease; }
         .page.active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        header { text-align: center; margin-bottom: 40px; }
-        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-
-        /* Формы регистрации */
-        .auth-form {
-            max-width: 400px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            border: var(--border);
-        }
-
-        .auth-form input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #0d1117;
-            border: var(--border);
-            color: white;
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
-
-        .btn-action {
-            width: 100%;
-            padding: 12px;
+        .btn-blue {
             background: var(--accent-color);
-            border: none;
             color: white;
-            font-weight: bold;
+            padding: 12px 24px;
             border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center; gap: 10px;
+            border: none; cursor: pointer;
         }
 
-        /* Стили ЧАТА */
-        .chat-container {
-            max-width: 600px;
-            margin: 0 auto;
+        /* ЧАТ */
+        .chat-wrap {
+            max-width: 600px; margin: 0 auto;
             background: var(--card-bg);
             border: var(--border);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
         }
 
-        .chat-messages {
-            flex-grow: 1;
+        #chat-messages {
+            height: 400px;
             padding: 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            border-bottom: var(--border);
         }
 
-        .message {
-            background: rgba(255,255,255,0.05);
-            padding: 10px 15px;
-            border-radius: 10px;
-            width: fit-content;
-            max-width: 80%;
-        }
+        .msg { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; font-size: 14px; }
+        .msg b { color: var(--accent-color); }
 
-        .message b { color: var(--accent-color); margin-right: 5px; }
+        .chat-input-bar { padding: 15px; display: flex; gap: 10px; border-top: var(--border); }
+        .chat-input-bar input { flex: 1; background: #0d1117; border: var(--border); color: white; padding: 10px; border-radius: 8px; }
 
-        .chat-input-area { padding: 15px; display: flex; gap: 10px; }
-        
-        .chat-input-area input {
-            flex-grow: 1;
-            background: #0d1117;
-            border: var(--border);
+        /* ТЕЛЕГРАМ БЛОК */
+        .tg-hero {
+            background: linear-gradient(135deg, #24A1DE 0%, #1c76a3 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
             color: white;
-            padding: 10px;
-            border-radius: 8px;
         }
 
-        .btn-send {
-            background: var(--accent-color);
-            border: none;
-            color: white;
-            padding: 0 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        footer { text-align: center; padding: 50px; border-top: var(--border); margin-top: 50px; }
 
-        .btn-send:disabled {
-            background: #30363d;
-            cursor: not-allowed;
-            color: #8b949e;
-        }
-
-        /* Загрузки */
-        .download-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         .dl-card {
             background: var(--card-bg);
             border: var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 20px; border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .dl-info { display: flex; align-items: center; gap: 20px; }
-        .dl-icon { font-size: 24px; color: var(--accent-color); }
-        .btn-download {
-            background: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        footer { text-align: center; padding: 40px; border-top: var(--border); margin-top: 50px; }
-        .tg-link { color: #24A1DE; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
+    <!-- ОКНО ВВОДА НИКА -->
+    <div id="nick-overlay">
+        <div class="nick-box">
+            <h2 style="margin:0">Добро пожаловать</h2>
+            <p style="color:var(--text-sec)">Введите ваш ник для входа на сайт</p>
+            <input type="text" id="user-nickname" placeholder="Ваш ник...">
+            <button class="btn-blue" style="width:100%" onclick="saveNick()">Войти на сайт</button>
+        </div>
+    </div>
+
     <nav>
-        <div class="logo">root_KyPka</div>
+        <div class="logo">ROOT_KYPKA</div>
         <div class="nav-buttons">
             <div class="nav-link active" onclick="openPage('home', this)">Главная</div>
             <div class="nav-link" onclick="openPage('downloads', this)">Загрузки</div>
             <div class="nav-link" onclick="openPage('chat-page', this)">Чат</div>
-            <div class="nav-link" onclick="openPage('reg-page', this)">Регистрация</div>
         </div>
     </nav>
 
     <!-- Главная -->
     <div id="home" class="page active">
-        <header>
-            <h1>Добро пожаловать!</h1>
-            <p style="color: var(--text-sec)">Официальный сайт проекта</p>
+        <header style="text-align:center">
+            <h1 id="welcome-text">Привет!</h1>
+            <p style="color:var(--text-sec)">Рады видеть тебя в нашем проекте.</p>
         </header>
-        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <p>Здесь собраны лучшие инструменты для геймеров и спидраннеров. Используйте меню навигации, чтобы перейти в нужный раздел.</p>
+
+        <!-- ТЕЛЕГРАМЧИК -->
+        <div class="tg-hero">
+            <i class="fab fa-telegram" style="font-size: 50px; margin-bottom: 15px;"></i>
+            <h2>Мой Телеграм Канал</h2>
+            <p>Тут все новости, обновления и эксклюзивные моды!</p>
+            <a href="https://t.me/root_KyPka" target="_blank" class="btn-blue" style="background: white; color: #24A1DE;">
+                Подписаться на @root_KyPka
+            </a>
         </div>
     </div>
 
     <!-- Загрузки -->
     <div id="downloads" class="page">
-        <header><h1>Downloads</h1></header>
-        <div class="download-container">
-            <div class="dl-card">
-                <div class="dl-info">
-                    <div class="dl-icon"><i class="fas fa-bolt"></i></div>
-                    <div class="dl-text">
-                        <h3>Lagger v1.0</h3>
-                        <p>Программа для снижения фпс, сделано для спидранеров.</p>
-                    </div>
-                </div>
-                <a href="https://www.mediafire.com/file/t6bfnbdm7g87caw/lag.exe/file" target="_blank" class="btn-download">Скачать</a>
+        <header style="text-align:center"><h1>Загрузки</h1></header>
+        <div class="dl-card">
+            <div>
+                <h3 style="margin:0">Lagger v1.0</h3>
+                <p style="color:var(--text-sec); margin:5px 0 0 0">Программа для снижения фпс, сделано для спидранеров.</p>
             </div>
+            <a href="https://www.mediafire.com/file/t6bfnbdm7g87caw/lag.exe/file" target="_blank" class="btn-blue">Скачать</a>
         </div>
     </div>
 
     <!-- Чат -->
     <div id="chat-page" class="page">
-        <header>
-            <h1>Global Chat</h1>
-            <p id="cooldown-timer" style="color: #f85149; font-weight: bold; min-height: 20px;"></p>
+        <header style="text-align:center">
+            <h1>Глобальный Чат</h1>
+            <p id="cd-timer" style="color:#f85149; height: 20px; font-weight:bold"></p>
         </header>
-        <div class="chat-container">
-            <div class="chat-messages" id="chat-box">
-                <div class="message"><b>System:</b> Добро пожаловать в глобальный чат root_KyPka!</div>
+        <div class="chat-wrap">
+            <div id="chat-messages">
+                <div class="msg"><b>System:</b> Добро пожаловать! Напиши что-нибудь.</div>
             </div>
-            <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Введите сообщение...">
-                <button class="btn-send" id="send-btn" onclick="sendMessage()">Отправить</button>
+            <div class="chat-input-bar">
+                <input type="text" id="chat-input" placeholder="Сообщение...">
+                <button class="btn-blue" id="send-btn" onclick="sendMsg()">Отправить</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Регистрация -->
-    <div id="reg-page" class="page">
-        <header><h1>Регистрация</h1></header>
-        <div class="auth-form">
-            <input type="text" placeholder="Придумайте логин">
-            <input type="password" placeholder="Пароль">
-            <input type="email" placeholder="Email">
-            <button class="btn-action" onclick="alert('Регистрация временно недоступна (требуется база данных)')">Создать аккаунт</button>
         </div>
     </div>
 
     <footer>
-        <p>Наш Telegram: <a href="https://t.me/root_KyPka" class="tg-link">@root_KyPka</a></p>
+        <p>Связь со мной: <a href="https://t.me/root_KyPka" style="color:var(--accent-color); text-decoration:none; font-weight:bold">@root_KyPka</a></p>
     </footer>
 
     <script>
+        let myNick = "";
+        let canSend = true;
+
+        // Проверка ника
+        window.onload = function() {
+            const saved = localStorage.getItem('kypka_nick');
+            if (saved) {
+                myNick = saved;
+                document.getElementById('nick-overlay').style.display = 'none';
+                document.getElementById('welcome-text').innerText = `Привет, ${myNick}!`;
+            }
+        }
+
+        function saveNick() {
+            const val = document.getElementById('user-nickname').value.trim();
+            if (val.length < 2) return alert("Ник слишком короткий!");
+            myNick = val;
+            localStorage.setItem('kypka_nick', val);
+            document.getElementById('nick-overlay').style.display = 'none';
+            document.getElementById('welcome-text').innerText = `Привет, ${myNick}!`;
+        }
+
         function openPage(pageId, btn) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             btn.classList.add('active');
-            window.scrollTo(0, 0);
         }
 
-        // Логика чата и КД (30 секунд)
-        let canSend = true;
-        let cooldownTime = 30;
-
-        function sendMessage() {
+        function sendMsg() {
             const input = document.getElementById('chat-input');
-            const chatBox = document.getElementById('chat-box');
-            const sendBtn = document.getElementById('send-btn');
-            const timerDisplay = document.getElementById('cooldown-timer');
+            const box = document.getElementById('chat-messages');
+            const btn = document.getElementById('send-btn');
+            const cd = document.getElementById('cd-timer');
 
-            if (input.value.trim() === "" || !canSend) return;
+            if (!input.value.trim() || !canSend) return;
 
-            // Добавляем сообщение (локально)
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'message';
-            msgDiv.innerHTML = `<b>User:</b> ${input.value}`;
-            chatBox.appendChild(msgDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
+            const div = document.createElement('div');
+            div.className = 'msg';
+            div.innerHTML = `<b>${myNick}:</b> ${input.value}`;
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
 
             input.value = "";
             canSend = false;
-            sendBtn.disabled = true;
+            btn.disabled = true;
 
-            let timeLeft = cooldownTime;
-            
+            let left = 30;
             const timer = setInterval(() => {
-                timerDisplay.innerText = `Подождите: ${timeLeft} сек.`;
-                timeLeft--;
-
-                if (timeLeft < 0) {
+                cd.innerText = `КД: ${left}с`;
+                left--;
+                if (left < 0) {
                     clearInterval(timer);
                     canSend = true;
-                    sendBtn.disabled = false;
-                    timerDisplay.innerText = "";
+                    btn.disabled = false;
+                    cd.innerText = "";
                 }
             }, 1000);
         }
