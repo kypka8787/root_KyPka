@@ -71,7 +71,7 @@
         header h1 { font-size: 3rem; margin-bottom: 10px; }
         header .icon-big { font-size: 50px; color: var(--accent-color); margin-bottom: 20px; }
 
-        /* Вкладка СКАЧАТЬ (как на скрине) */
+        /* Вкладка СКАЧАТЬ */
         .download-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
 
         .dl-card {
@@ -158,11 +158,11 @@
     <div id="home" class="page active">
         <header>
             <h1>Добро пожаловать!</h1>
-            <p style="color: var(--text-sec)">Модификации и полезные ресурсы от команды root_KyPka</p>
+            <p style="color: var(--text-sec)">Сайт проекта root_KyPka</p>
         </header>
         <div style="text-align: center; max-width: 700px; margin: 0 auto; line-height: 1.8;">
             <h2>О проекте</h2>
-            <p>Это главная страница нашего проекта. Здесь вы найдете эксклюзивные модификации, полезные скрипты и инструменты для оптимизации игр. Мы работаем над тем, чтобы ваш игровой опыт стал лучше.</p>
+            <p>Мы разрабатываем специализированный софт для различных задач. Наши инструменты помогают пользователям в достижении новых результатов. Все разработки проходят проверку перед публикацией.</p>
         </div>
     </div>
 
@@ -171,68 +171,50 @@
         <header>
             <div class="icon-big"><i class="fas fa-download"></i></div>
             <h1>Downloads</h1>
-            <p style="color: var(--text-sec)">Здесь вы можете скачать наши последние разработки</p>
+            <p style="color: var(--text-sec)">Наши актуальные инструменты</p>
         </header>
 
         <div class="download-container">
-            <!-- КАРТОЧКА 1: ЛАГГЕР -->
+            <!-- КАРТОЧКА: ЛАГГЕР -->
             <div class="dl-card">
                 <div class="dl-info">
                     <div class="dl-icon"><i class="fas fa-bolt"></i></div>
                     <div class="dl-text">
-                        <h3>Lagger v1.0 [BETA]</h3>
-                        <p>Программа которая снижает фпс и делает баги. Тестовая версия.</p>
+                        <h3>Lagger v1.0</h3>
+                        <p>Программа для снижения фпс, сделано для спидранеров.</p>
                     </div>
                 </div>
                 <a href="#" class="btn-download"><i class="fas fa-download"></i> Скачать</a>
             </div>
 
-            <!-- КАРТОЧКА 2: ОПТИМИЗАТОР -->
-            <div class="dl-card">
-                <div class="dl-info">
-                    <div class="dl-icon"><i class="fas fa-rocket"></i></div>
-                    <div class="dl-text">
-                        <h3>FPS Booster Extreme</h3>
-                        <p>Скрипт для очистки кэша и настройки Windows под максимальный FPS.</p>
-                    </div>
-                </div>
-                <a href="#" class="btn-download"><i class="fas fa-download"></i> Скачать</a>
-            </div>
-
-            <!-- КАРТОЧКА 3: БУДУЩЕЕ -->
+            <!-- БЛОК "СКОРО" -->
             <div class="dl-card" style="opacity: 0.6;">
                 <div class="dl-info">
-                    <div class="dl-icon"><i class="fas fa-hourglass-half"></i></div>
+                    <div class="dl-icon"><i class="fas fa-clock"></i></div>
                     <div class="dl-text">
-                        <h3>Больше загрузок скоро...</h3>
-                        <p>Мы работаем над новым приватным софтом. Следите за обновлениями.</p>
+                        <h3>Новые проекты скоро...</h3>
+                        <p>Следите за обновлениями в нашем Telegram канале.</p>
                     </div>
                 </div>
-                <a href="#" class="btn-download" style="background: #30363d; pointer-events: none;">Скоро</a>
+                <a href="#" class="btn-download" style="background: #30363d; pointer-events: none;">Ожидаем</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>Присоединяйтесь к нашему сообществу:</p>
+        <p>Наш Telegram канал:</p>
         <a href="https://t.me/root_KyPka" class="tg-link">
             <i class="fab fa-telegram"></i> @root_KyPka
         </a>
-        <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-sec);">&copy; 2025 root_KyPka. Все права защищены.</p>
+        <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-sec);">&copy; 2025 root_KyPka.</p>
     </footer>
 
     <script>
         function openPage(pageId, btn) {
-            // Скрываем все страницы
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Убираем активный класс у кнопок
             document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
-            
-            // Показываем нужную
             document.getElementById(pageId).classList.add('active');
             btn.classList.add('active');
-
-            // Скролл вверх при смене страницы
             window.scrollTo(0, 0);
         }
     </script>
