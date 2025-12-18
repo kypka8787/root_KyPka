@@ -2,47 +2,241 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>My Mods Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROOT KYPKA | MODS</title>
+    <!-- Подключаем красивые иконки и шрифты -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --bg-color: #0a0b10;
+            --card-bg: #161b22;
+            --accent-color: #00d4ff; /* Голубой неон */
+            --text-main: #ffffff;
+            --text-secondary: #8b949e;
+        }
+
         body {
-            background-color: #0d1117; /* Темный фон как в ТГ */
-            color: #c9d1d9;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
         }
-        h1 {
-            color: #39FF14; /* Ярко-зеленый ник */
-            font-size: 2.5em;
-            margin-bottom: 10px;
+
+        /* Навигация */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: rgba(13, 17, 23, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #30363d;
         }
-        a {
-            color: #58a6ff; /* Синяя ссылка */
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-nav {
             text-decoration: none;
-            font-size: 1.2em;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            text-align: center;
+            color: var(--text-main);
+            padding: 8px 20px;
+            border-radius: 8px;
             border: 1px solid #30363d;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        /* Главный блок */
+        header {
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(circle at center, #1a2332 0%, #0a0b10 100%);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Секция "О проекте" */
+        .section {
+            padding: 60px 10%;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        /* Карточки */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #30363d;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .card i {
+            font-size: 40px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .btn-download {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #238636;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-download:hover {
+            background: #2ea043;
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
             padding: 40px;
-            border-radius: 10px;
-            background: #161b22;
+            border-top: 1px solid #30363d;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            nav { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>твойникmods</h1>
-        <p>Добро пожаловать на мой сайт с модами!</p>
-        <br>
-        <a href="https://t.me/твой_канал">Мой Telegram канал</a>
-    </div>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-cube"></i> root_KyPka
+        </div>
+        <div class="nav-links">
+            <a href="#" class="btn-nav">Главная</a>
+            <a href="https://t.me/твой_канал" class="btn-nav">Telegram</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Добро пожаловать!</h1>
+        <p class="subtitle">Лучшие модификации, приватные читы и полезные инструменты для твоих любимых игр.</p>
+    </header>
+
+    <section class="section">
+        <div class="section-title">
+            <i class="fas fa-code"></i> О проекте
+        </div>
+        <p style="color: var(--text-secondary); max-width: 800px;">
+            Это официальная страница <b>root_KyPka</b>. Здесь мы собираем самый актуальный софт, который проходит тщательную проверку на работоспособность и вирусы. Присоединяйся к нашему сообществу!
+        </p>
+
+        <div class="grid">
+            <!-- Карточка 1 -->
+            <div class="card">
+                <i class="fas fa-gamepad"></i>
+                <h3>Игровые моды</h3>
+                <p>Эксклюзивные сборки и скрипты для популярных игр. Всё настроено для максимального комфорта.</p>
+                <a href="#" class="btn-download">Перейти</a>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="card">
+                <i class="fas fa-tools"></i>
+                <h3>Инструменты</h3>
+                <p>Утилиты для оптимизации системы, обхода блокировок и настройки игрового процесса.</p>
+                <a href="#" class="btn-download">Скачать</a>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Без вирусов</h3>
+                <p>Все файлы проверяются через VirusTotal. Мы гарантируем безопасность твоего ПК.</p>
+                <a href="#" class="btn-download">Инфо</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 root_KyPka. Все права защищены. <br>
+        Сделано с душой для геймеров.
+    </footer>
+
 </body>
 </html>
