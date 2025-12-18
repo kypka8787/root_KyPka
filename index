@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>My Mods Site</title>
+    <style>
+        body {
+            background-color: #0d1117; /* Темный фон как в ТГ */
+            color: #c9d1d9;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #39FF14; /* Ярко-зеленый ник */
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        a {
+            color: #58a6ff; /* Синяя ссылка */
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            text-align: center;
+            border: 1px solid #30363d;
+            padding: 40px;
+            border-radius: 10px;
+            background: #161b22;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>твойникmods</h1>
+        <p>Добро пожаловать на мой сайт с модами!</p>
+        <br>
+        <a href="https://t.me/твой_канал">Мой Telegram канал</a>
+    </div>
+</body>
+</html>
