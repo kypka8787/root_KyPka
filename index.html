@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROOT KYPKA | MODS</title>
-    <!-- Подключаем красивые иконки и шрифты -->
+    <title>ROOT KYPKA | PROJECT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #0a0b10;
-            --card-bg: #161b22;
-            --accent-color: #00d4ff; /* Голубой неон */
+            --bg-color: #060912;
+            --card-bg: rgba(22, 27, 34, 0.6);
+            --accent-color: #2188ff;
             --text-main: #ffffff;
-            --text-secondary: #8b949e;
+            --text-sec: #8b949e;
+            --border: 1px solid #30363d;
         }
 
         body {
             margin: 0;
-            padding: 0;
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Навигация */
@@ -31,212 +30,211 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 10%;
-            background: rgba(13, 17, 23, 0.8);
+            padding: 15px 10%;
+            background: rgba(13, 17, 23, 0.9);
             backdrop-filter: blur(10px);
+            border-bottom: var(--border);
             position: sticky;
             top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #30363d;
+            z-index: 100;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .logo { font-weight: 800; font-size: 22px; color: var(--accent-color); text-transform: uppercase; }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .btn-nav {
-            text-decoration: none;
-            color: var(--text-main);
-            padding: 8px 20px;
-            border-radius: 8px;
-            border: 1px solid #30363d;
-            transition: 0.3s;
-            font-weight: 600;
-        }
-
-        .btn-nav:hover {
-            background: var(--accent-color);
-            color: #000;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px var(--accent-color);
-        }
-
-        /* Главный блок */
-        header {
-            text-align: center;
-            padding: 100px 20px;
-            background: radial-gradient(circle at center, #1a2332 0%, #0a0b10 100%);
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #fff, var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Секция "О проекте" */
-        .section {
-            padding: 60px 10%;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-title i {
-            color: var(--accent-color);
-        }
-
-        /* Карточки */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid #30363d;
-            transition: 0.3s;
-            text-align: center;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
-        }
-
-        .card i {
-            font-size: 40px;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .btn-download {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            background: #238636;
+        .nav-buttons { display: flex; gap: 10px; }
+        
+        .nav-link {
+            background: rgba(255,255,255,0.05);
+            border: var(--border);
             color: white;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(33, 136, 255, 0.4);
+        }
+
+        /* Общие стили секций */
+        .page { display: none; padding: 60px 10%; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 { font-size: 3rem; margin-bottom: 10px; }
+        header .icon-big { font-size: 50px; color: var(--accent-color); margin-bottom: 20px; }
+
+        /* Вкладка СКАЧАТЬ (как на скрине) */
+        .download-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+
+        .dl-card {
+            background: var(--card-bg);
+            border: var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             transition: 0.2s;
         }
 
-        .btn-download:hover {
-            background: #2ea043;
+        .dl-card:hover { border-color: var(--accent-color); background: rgba(33, 136, 255, 0.05); }
+
+        .dl-info { display: flex; align-items: center; gap: 20px; }
+        
+        .dl-icon {
+            width: 50px; height: 50px;
+            background: rgba(33, 136, 255, 0.15);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: var(--accent-color);
         }
+
+        .dl-text h3 { margin: 0 0 5px 0; font-size: 1.2rem; }
+        .dl-text p { margin: 0; color: var(--text-sec); font-size: 0.9rem; }
+
+        .btn-download {
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: flex; align-items: center; gap: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-download:hover { transform: scale(1.05); filter: brightness(1.2); }
 
         /* Футер */
         footer {
-            text-align: center;
+            margin-top: 100px;
             padding: 40px;
-            border-top: 1px solid #30363d;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            text-align: center;
+            border-top: var(--border);
+            background: rgba(0,0,0,0.2);
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            nav { flex-direction: column; gap: 15px; }
+        .tg-link {
+            color: #24A1DE;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border: 1px solid #24A1DE;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .tg-link:hover { background: #24A1DE; color: white; box-shadow: 0 0 20px rgba(36, 161, 222, 0.4); }
+
+        @media (max-width: 600px) {
+            .dl-card { flex-direction: column; text-align: center; gap: 20px; }
+            .dl-info { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">
-            <i class="fas fa-cube"></i> root_KyPka
-        </div>
-        <div class="nav-links">
-            <a href="#" class="btn-nav">Главная</a>
-            <a href="https://t.me/твой_канал" class="btn-nav">Telegram</a>
+        <div class="logo">root_KyPka</div>
+        <div class="nav-buttons">
+            <div class="nav-link active" onclick="openPage('home', this)">Home</div>
+            <div class="nav-link" onclick="openPage('downloads', this)">Downloads</div>
         </div>
     </nav>
 
-    <header>
-        <h1>Добро пожаловать!</h1>
-        <p class="subtitle">Лучшие модификации, приватные читы и полезные инструменты для твоих любимых игр.</p>
-    </header>
-
-    <section class="section">
-        <div class="section-title">
-            <i class="fas fa-code"></i> О проекте
+    <!-- ГЛАВНАЯ СТРАНИЦА -->
+    <div id="home" class="page active">
+        <header>
+            <h1>Добро пожаловать!</h1>
+            <p style="color: var(--text-sec)">Модификации и полезные ресурсы от команды root_KyPka</p>
+        </header>
+        <div style="text-align: center; max-width: 700px; margin: 0 auto; line-height: 1.8;">
+            <h2>О проекте</h2>
+            <p>Это главная страница нашего проекта. Здесь вы найдете эксклюзивные модификации, полезные скрипты и инструменты для оптимизации игр. Мы работаем над тем, чтобы ваш игровой опыт стал лучше.</p>
         </div>
-        <p style="color: var(--text-secondary); max-width: 800px;">
-            Это официальная страница <b>root_KyPka</b>. Здесь мы собираем самый актуальный софт, который проходит тщательную проверку на работоспособность и вирусы. Присоединяйся к нашему сообществу!
-        </p>
+    </div>
 
-        <div class="grid">
-            <!-- Карточка 1 -->
-            <div class="card">
-                <i class="fas fa-gamepad"></i>
-                <h3>Игровые моды</h3>
-                <p>Эксклюзивные сборки и скрипты для популярных игр. Всё настроено для максимального комфорта.</p>
-                <a href="#" class="btn-download">Перейти</a>
+    <!-- СТРАНИЦА СКАЧАТЬ -->
+    <div id="downloads" class="page">
+        <header>
+            <div class="icon-big"><i class="fas fa-download"></i></div>
+            <h1>Downloads</h1>
+            <p style="color: var(--text-sec)">Здесь вы можете скачать наши последние разработки</p>
+        </header>
+
+        <div class="download-container">
+            <!-- КАРТОЧКА 1: ЛАГГЕР -->
+            <div class="dl-card">
+                <div class="dl-info">
+                    <div class="dl-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="dl-text">
+                        <h3>Lagger v1.0 [BETA]</h3>
+                        <p>Программа которая снижает фпс и делает баги. Тестовая версия.</p>
+                    </div>
+                </div>
+                <a href="#" class="btn-download"><i class="fas fa-download"></i> Скачать</a>
             </div>
 
-            <!-- Карточка 2 -->
-            <div class="card">
-                <i class="fas fa-tools"></i>
-                <h3>Инструменты</h3>
-                <p>Утилиты для оптимизации системы, обхода блокировок и настройки игрового процесса.</p>
-                <a href="#" class="btn-download">Скачать</a>
+            <!-- КАРТОЧКА 2: ОПТИМИЗАТОР -->
+            <div class="dl-card">
+                <div class="dl-info">
+                    <div class="dl-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="dl-text">
+                        <h3>FPS Booster Extreme</h3>
+                        <p>Скрипт для очистки кэша и настройки Windows под максимальный FPS.</p>
+                    </div>
+                </div>
+                <a href="#" class="btn-download"><i class="fas fa-download"></i> Скачать</a>
             </div>
 
-            <!-- Карточка 3 -->
-            <div class="card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Без вирусов</h3>
-                <p>Все файлы проверяются через VirusTotal. Мы гарантируем безопасность твоего ПК.</p>
-                <a href="#" class="btn-download">Инфо</a>
+            <!-- КАРТОЧКА 3: БУДУЩЕЕ -->
+            <div class="dl-card" style="opacity: 0.6;">
+                <div class="dl-info">
+                    <div class="dl-icon"><i class="fas fa-hourglass-half"></i></div>
+                    <div class="dl-text">
+                        <h3>Больше загрузок скоро...</h3>
+                        <p>Мы работаем над новым приватным софтом. Следите за обновлениями.</p>
+                    </div>
+                </div>
+                <a href="#" class="btn-download" style="background: #30363d; pointer-events: none;">Скоро</a>
             </div>
         </div>
-    </section>
+    </div>
 
     <footer>
-        &copy; 2025 root_KyPka. Все права защищены. <br>
-        Сделано с душой для геймеров.
+        <p>Присоединяйтесь к нашему сообществу:</p>
+        <a href="https://t.me/root_KyPka" class="tg-link">
+            <i class="fab fa-telegram"></i> @root_KyPka
+        </a>
+        <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-sec);">&copy; 2025 root_KyPka. Все права защищены.</p>
     </footer>
 
+    <script>
+        function openPage(pageId, btn) {
+            // Скрываем все страницы
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Убираем активный класс у кнопок
+            document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+            
+            // Показываем нужную
+            document.getElementById(pageId).classList.add('active');
+            btn.classList.add('active');
+
+            // Скролл вверх при смене страницы
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
